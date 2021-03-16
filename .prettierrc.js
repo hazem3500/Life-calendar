@@ -8,4 +8,5 @@ module.exports = {
   tabWidth: 2,
   useTabs: false,
   jsxBracketSameLine: false,
+  endOfLine: 'auto'
 }

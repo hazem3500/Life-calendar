@@ -6,5 +6,5 @@ type WeekProps = {
 }
 
 export default function Week({ lived }: WeekProps) {
-  return <Box boxSize={6} border="2px" borderRadius="md" bg={lived ? 'green.400' : 'gray.100'} />
+  return <Box boxSize={5} border="2px" borderRadius="md" bg={lived ? 'green.300' : 'gray.100'} />
 }
