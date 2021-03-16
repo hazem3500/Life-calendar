@@ -66,24 +66,32 @@ function WeeksWithLabels({ totalWeeks, livedWeeks }) {
 }
 
 function ColumnLabels() {
-  return iterate(53, (i) => (
-    <Text key={i} fontWeight="semibold">
-      {i === 0 ? null : i}
-    </Text>
-  ))
+  return (
+    <>
+      {iterate(53, (i) => (
+        <Text key={i} fontWeight="semibold">
+          {i === 0 ? null : i}
+        </Text>
+      ))}
+    </>
+  )
 }
 
 function WeeksWithRowLabels({ totalWeeks, livedWeeks }) {
-  return iterate(totalWeeks, (i) => (
-    <React.Fragment key={i}>
-      {i % 52 === 0 && <Text fontWeight="semibold">{Math.floor(i / 52)}</Text>}
-      <Tooltip label={`week ${i + 1}`} openDelay={500}>
-        <Box>
-          <Week lived={i < livedWeeks} />
-        </Box>
-      </Tooltip>
-    </React.Fragment>
-  ))
+  return (
+    <>
+      {iterate(totalWeeks, (i) => (
+        <React.Fragment key={i}>
+          {i % 52 === 0 && <Text fontWeight="semibold">{Math.floor(i / 52)}</Text>}
+          <Tooltip label={`week ${i + 1}`} openDelay={500}>
+            <Box>
+              <Week lived={i < livedWeeks} />
+            </Box>
+          </Tooltip>
+        </React.Fragment>
+      ))}
+    </>
+  )
 }
 
 export default Calendar

@@ -1,1 +1,1 @@
-export { default as Button } from './button.theme'
+export { default as Button } from './Button.theme'
