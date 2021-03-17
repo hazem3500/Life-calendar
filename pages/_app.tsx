@@ -5,7 +5,7 @@ import theme from '../constants/theme/theme'
 function MyApp({ Component, pageProps }) {
   return (
     <PlausibleProvider
-      domain="hazem.cool"
+      domain="life-calendar.xyz"
       customDomain="analytics.hazem.cool/js/plausible.js?original="
       selfHosted
     >
