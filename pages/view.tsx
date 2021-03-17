@@ -34,13 +34,15 @@ const ViewPage = ({ dob }) => {
         <Box mt={20} mb={24}>
           <Header />
         </Box>
-        <Box as="main" display="grid" justifyContent={{ '2xl': 'center' }} p={10} overflow="auto">
+        <Box as="main" display="grid" justifyContent={{ xl: 'center' }} p={10} overflow="auto">
           <Calendar livedWeeks={livedWeeks} totalWeeks={totalWeeks} />
           <Box justifySelf="end" mt={4} pe={4} transform={{ xl: 'translateX(100%)' }}>
             <YearsCounter yearsLived={Math.floor(totalWeeks / 52)} />
           </Box>
         </Box>
-        <Footer />
+        <Box mt={6}>
+          <Footer />
+        </Box>
       </Box>
     </>
   )

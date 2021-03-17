@@ -23,8 +23,8 @@ function CalendarGrid({ children }) {
   return (
     <Grid
       display="inline-grid"
-      templateColumns="repeat(53, 24px)"
-      gap={2}
+      templateColumns="repeat(53, 20px)"
+      gap={1}
       justifyItems="center"
       justifyContent="center"
       alignItems="center"
