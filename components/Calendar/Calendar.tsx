@@ -1,4 +1,4 @@
-import { Box, Grid, Text, Tooltip } from '@chakra-ui/react'
+import { Box, Grid, Text } from '@chakra-ui/react'
 import React from 'react'
 import { iterate } from '../../utils/iterate'
 import LabelWithArrow from '../LabelWithArrow/LabelWithArrow'
@@ -93,11 +93,9 @@ function WeeksWithRowLabels({ totalWeeks, livedWeeks }) {
               {Math.floor(i / 52)}
             </p>
           )}
-          <Tooltip label={`week ${i + 1}`} openDelay={500}>
-            <div>
-              <Week lived={i < livedWeeks} />
-            </div>
-          </Tooltip>
+          <div title={`week ${i + 1}`}>
+            <Week lived={i < livedWeeks} />
+          </div>
         </React.Fragment>
       ))}
     </>
