@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <PlausibleProvider
       domain="life-calendar.xyz"
-      customDomain="analytics.hazem.cool/js/plausible.js?original="
+      customDomain="https://analytics.hazem.cool/"
       selfHosted
     >
       <ChakraProvider resetCSS theme={theme}>
