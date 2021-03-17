@@ -23,12 +23,13 @@ function CalendarGrid({ children }) {
   return (
     <Grid
       display="inline-grid"
-      templateColumns="repeat(53, 20px)"
-      gap={1}
+      templateColumns="repeat(53, 24px)"
+      gap={2}
       justifyItems="center"
       justifyContent="center"
       alignItems="center"
       position="relative"
+      pe={{ base: 6, xl: 0 }}
     >
       {children}
     </Grid>
@@ -69,7 +70,7 @@ function ColumnLabels() {
   return (
     <>
       {iterate(53, (i) => (
-        <Text key={i} fontWeight="semibold">
+        <Text key={i} whiteSpace="nowrap" fontWeight="semibold">
           {i === 0 ? null : i}
         </Text>
       ))}
@@ -82,11 +83,20 @@ function WeeksWithRowLabels({ totalWeeks, livedWeeks }) {
     <>
       {iterate(totalWeeks, (i) => (
         <React.Fragment key={i}>
-          {i % 52 === 0 && <Text fontWeight="semibold">{Math.floor(i / 52)}</Text>}
+          {i % 52 === 0 && (
+            <p
+              style={{
+                fontWeight: 500,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {Math.floor(i / 52)}
+            </p>
+          )}
           <Tooltip label={`week ${i + 1}`} openDelay={500}>
-            <Box>
+            <div>
               <Week lived={i < livedWeeks} />
-            </Box>
+            </div>
           </Tooltip>
         </React.Fragment>
       ))}

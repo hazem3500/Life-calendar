@@ -1,4 +1,4 @@
-import { Box, Stack, Text } from '@chakra-ui/layout'
+import { Stack, Text } from '@chakra-ui/layout'
 import React from 'react'
 
 type YearsCounterProps = {
@@ -11,7 +11,9 @@ export default function YearsCounter({ yearsLived }: YearsCounterProps) {
       <Text fontWeight="bold" fontSize="xl" lineHeight="none">
         NOW
       </Text>
-      <Text lineHeight="none">YOU'RE</Text>
+      <Text lineHeight="none" fontWeight="medium">
+        {`YOU'RE`}
+      </Text>
       <Text fontWeight="bold" fontSize="5xl" lineHeight="0.6">
         {yearsLived}
       </Text>

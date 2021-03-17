@@ -2,6 +2,7 @@ import { Box, Button, Center, FormControl, FormLabel, Input, Stack } from '@chak
 import Head from 'next/head'
 import Header from '../components/Header/Header'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const IndexPage = () => {
   return (
@@ -23,10 +24,17 @@ const IndexPage = () => {
 
 function UserInfoForm() {
   const router = useRouter()
+  const [generating, setGenerating] = useState(false)
+
+  useEffect(() => {
+    router.prefetch('/view')
+  }, [router])
+
   function onSubmit(e) {
     e.preventDefault()
     const dob = e.target.elements.dob.value
     if (!dob) return
+    setGenerating(true)
     router.replace({
       pathname: '/view',
       query: {
@@ -40,7 +48,7 @@ function UserInfoForm() {
         <FormLabel fontSize="x-large">Your birthday</FormLabel>
         <Input name="dob" size="lg" type="date" />
       </FormControl>
-      <Button type="submit" size="lg" colorScheme="black" variant="solid">
+      <Button type="submit" size="lg" colorScheme="black" variant="solid" isLoading={generating}>
         GENERATE LIFE CALENDAR
       </Button>
     </Stack>

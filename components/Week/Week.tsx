@@ -1,10 +1,21 @@
-import { Box } from '@chakra-ui/layout'
 import React from 'react'
 
 type WeekProps = {
   lived: boolean
 }
 
-export default function Week({ lived }: WeekProps) {
-  return <Box boxSize={5} border="2px" borderRadius="md" bg={lived ? 'green.300' : 'gray.100'} />
+function Week({ lived }: WeekProps) {
+  return (
+    <div
+      style={{
+        width: 'var(--chakra-sizes-6)',
+        height: 'var(--chakra-sizes-6)',
+        border: 'var(--chakra-borders-2px)',
+        borderRadius: 'var(--chakra-radii-md)',
+        backgroundColor: lived ? 'var(--chakra-colors-green-300)' : 'var(--chakra-colors-gray-100)',
+      }}
+    />
+  )
 }
+
+export default Week
