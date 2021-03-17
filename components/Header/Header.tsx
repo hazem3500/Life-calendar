@@ -13,9 +13,9 @@ function Header() {
         aria-label="toggle color mode"
         icon={colorMode === 'light' ? <IoMdSunny /> : <IoMdMoon />}
         position="absolute"
-        right={4}
-        top={'-1'}
-        transform="translateY(-100%)"
+        right={{ base: 4, lg: 0 }}
+        top={{ base: -1, lg: '50%' }}
+        transform={{ base: 'translateY(-100%)', lg: 'translateY(-50%)' }}
         onClick={() => toggleColorMode()}
       />
     </Container>
