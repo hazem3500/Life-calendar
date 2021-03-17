@@ -4,29 +4,26 @@ import Calendar from '../components/Calendar/Calendar'
 import Header from '../components/Header/Header'
 import { useRouter } from 'next/router'
 import calculateLife from '../utils/calculateLife'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import YearsCounter from '../components/YearsCounter/YearsCounter'
 import Footer from '../components/Footer/Footer'
-import useLocalStorage from '../utils/useLocalStorage'
 
-const ViewPage = () => {
+const ViewPage = ({ dob }) => {
   const router = useRouter()
 
-  const [lifeInfo, setLifeInfo] = useLocalStorage<{
+  const [lifeInfo] = useState<{
     livedWeeks: number
     totalWeeks: number
-  } | null>('life-info', null)
+  } | null>(() => calculateLife({ dob }))
   const { livedWeeks = 0, totalWeeks = 0 } = lifeInfo || {}
 
   useEffect(
     function () {
-      if (router.isReady) {
-        const dob = router?.query?.dob as string
-        if (!dob) router.replace('/')
-        setLifeInfo(calculateLife({ dob }))
+      if (!dob) {
+        router.replace('/')
       }
     },
-    [router, setLifeInfo]
+    [router, dob]
   )
   return (
     <>
@@ -37,7 +34,7 @@ const ViewPage = () => {
         <Box mt={20} mb={24}>
           <Header />
         </Box>
-        <Box as="main" display="grid" justifyContent={{ xl: 'center' }} p={10} overflow="auto">
+        <Box as="main" display="grid" justifyContent={{ '2xl': 'center' }} p={10} overflow="auto">
           <Calendar livedWeeks={livedWeeks} totalWeeks={totalWeeks} />
           <Box justifySelf="end" mt={4} pe={4} transform={{ xl: 'translateX(100%)' }}>
             <YearsCounter yearsLived={Math.floor(totalWeeks / 52)} />
@@ -47,6 +44,10 @@ const ViewPage = () => {
       </Box>
     </>
   )
+}
+
+ViewPage.getInitialProps = async ({ query }) => {
+  return { dob: query?.dob }
 }
 
 export default ViewPage

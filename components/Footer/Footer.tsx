@@ -1,5 +1,6 @@
 import { Text, Stack, Link } from '@chakra-ui/layout'
 import React from 'react'
+import NextLink from 'next/link'
 
 function resetLifeInfo() {
   localStorage.removeItem('lifeInfo')
@@ -8,7 +9,7 @@ function resetLifeInfo() {
 export default function Footer() {
   return (
     <Stack as="footer" align="center" pb={4}>
-      <Link href="/" onClick={() => resetLifeInfo()}>
+      <Link as={NextLink} href="/" onClick={() => resetLifeInfo()}>
         <a>Change your data</a>
       </Link>
       <Text>
