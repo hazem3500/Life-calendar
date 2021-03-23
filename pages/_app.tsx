@@ -1,6 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import PlausibleProvider from 'next-plausible'
 import theme from '../constants/theme/theme'
+import { CookiesProvider } from 'react-cookie'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -9,9 +10,11 @@ function MyApp({ Component, pageProps }) {
       customDomain="https://analytics.hazem.cool/"
       selfHosted
     >
-      <ChakraProvider resetCSS theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
+      <CookiesProvider>
+        <ChakraProvider resetCSS theme={theme}>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </CookiesProvider>
     </PlausibleProvider>
   )
 }

@@ -2,29 +2,19 @@ import { Box } from '@chakra-ui/react'
 import Head from 'next/head'
 import Calendar from '../components/Calendar/Calendar'
 import Header from '../components/Header/Header'
-import { useRouter } from 'next/router'
 import calculateLife from '../utils/calculateLife'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import YearsCounter from '../components/YearsCounter/YearsCounter'
 import Footer from '../components/Footer/Footer'
+import { parseCookies } from '../utils/cookies'
 
 const ViewPage = ({ dob }) => {
-  const router = useRouter()
-
   const [lifeInfo] = useState<{
     livedWeeks: number
     totalWeeks: number
   } | null>(() => calculateLife({ dob }))
   const { livedWeeks = 0, totalWeeks = 0 } = lifeInfo || {}
 
-  useEffect(
-    function () {
-      if (!dob) {
-        router.replace('/')
-      }
-    },
-    [router, dob]
-  )
   return (
     <>
       <Head>
@@ -48,8 +38,22 @@ const ViewPage = ({ dob }) => {
   )
 }
 
-ViewPage.getInitialProps = async ({ query }) => {
-  return { dob: query?.dob }
+export async function getServerSideProps({ req, query }) {
+  const cookies = parseCookies(req)
+  const dob = query?.dob || JSON.parse(cookies?.lifeInfo)?.dob
+  if (!dob) {
+    return {
+      redirect: {
+        destination: `/`,
+      },
+    }
+  }
+
+  return {
+    props: {
+      dob,
+    },
+  }
 }
 
 export default ViewPage
