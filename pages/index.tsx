@@ -41,6 +41,7 @@ function UserInfoForm() {
     setCookie('lifeInfo', JSON.stringify({ dob }), {
       path: '/',
       sameSite: true,
+      maxAge: 60 * 60 * 24 * 30 * 12 * 200,
     })
     router.replace({
       pathname: '/view',
