@@ -4,6 +4,7 @@ import Header from '../components/Header/Header'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
+import { usePlausible } from 'next-plausible'
 import { parseCookies } from '../utils/cookies'
 
 const IndexPage = () => {
@@ -28,6 +29,7 @@ function UserInfoForm() {
   const router = useRouter()
   const [generating, setGenerating] = useState(false)
   const [, setCookie] = useCookies(['lifeInfo'])
+  const plausible = usePlausible()
 
   useEffect(() => {
     router.prefetch('/view')
@@ -42,6 +44,11 @@ function UserInfoForm() {
       path: '/',
       sameSite: true,
       maxAge: 60 * 60 * 24 * 30 * 12 * 200,
+    })
+    plausible('life-calendar-generated', {
+      props: {
+        dob,
+      },
     })
     router.replace({
       pathname: '/view',
