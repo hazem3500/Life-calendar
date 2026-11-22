@@ -4,6 +4,7 @@ import theme from '../constants/theme/theme'
 import { CookiesProvider } from 'react-cookie'
 import Router from 'next/router'
 import type { AppProps } from 'next/app'
+import AppFeedback from '../components/AppFeedback/AppFeedback'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,7 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <CookiesProvider>
         <ChakraProvider resetCSS theme={theme}>
-          <Component {...pageProps} />
+          <AppFeedback>
+            <Component {...pageProps} />
+          </AppFeedback>
         </ChakraProvider>
       </CookiesProvider>
     </PlausibleProvider>

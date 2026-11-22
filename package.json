@@ -29,6 +29,7 @@
     "@chakra-ui/theme-tools": "^2.2.10",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@hazem3500/feedback": "0.3.0",
     "cookie": "^2.0.2",
     "framer-motion": "^14.14.0",
     "next": "^16.4.6",
