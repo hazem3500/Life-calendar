@@ -42,7 +42,7 @@
     "@storybook/addon-docs": "^10.6.8",
     "@storybook/addon-links": "^10.6.8",
     "@storybook/nextjs-vite": "^10.6.8",
-    "@types/node": "^22.20.5",
+    "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "eslint": "^9.39.5",
