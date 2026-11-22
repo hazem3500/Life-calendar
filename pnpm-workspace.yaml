@@ -2,3 +2,6 @@ allowBuilds:
   esbuild: true
   sharp: true
   unrs-resolver: true
+# Our own packages ship from GitHub Packages and are used the day they publish.
+minimumReleaseAgeExclude:
+  - '@hazem3500/*'
