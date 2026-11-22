@@ -21,3 +21,4 @@ yarn-error.log*
 # Storybook
 /storybook-static
 *.tsbuildinfo
+!.env.example
