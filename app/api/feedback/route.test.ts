@@ -63,7 +63,7 @@ describe('public feedback relay', () => {
   })
 
   it('keeps the burst limit between separate requests', async () => {
-    const statuses = []
+    const statuses: number[] = []
     for (let i = 0; i < 61; i++) {
       const request = new Request(origin + '/api/feedback', {
         method: 'POST',
