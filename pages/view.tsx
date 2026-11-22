@@ -6,9 +6,10 @@ import calculateLife from '../utils/calculateLife'
 import { useState } from 'react'
 import YearsCounter from '../components/YearsCounter/YearsCounter'
 import Footer from '../components/Footer/Footer'
-import { parseCookies } from '../utils/cookies'
+import type { GetServerSideProps } from 'next'
+import { parseCookies, savedDob } from '../utils/cookies'
 
-const ViewPage = ({ dob }) => {
+const ViewPage = ({ dob }: { dob: string }) => {
   const [lifeInfo] = useState<{
     livedWeeks: number
     totalWeeks: number
@@ -38,13 +39,14 @@ const ViewPage = ({ dob }) => {
   )
 }
 
-export async function getServerSideProps({ req, query }) {
-  const cookies = parseCookies(req)
-  const dob = query?.dob || JSON.parse(cookies?.lifeInfo)?.dob
+export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
+  const fromQuery = typeof query?.dob === 'string' ? query.dob : null
+  const dob = fromQuery || savedDob(parseCookies(req))
   if (!dob) {
     return {
       redirect: {
         destination: `/`,
+        permanent: false,
       },
     }
   }

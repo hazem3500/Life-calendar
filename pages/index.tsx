@@ -5,7 +5,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import { usePlausible } from 'next-plausible'
-import { parseCookies } from '../utils/cookies'
+import type { GetServerSideProps } from 'next'
+import { parseCookies, savedDob } from '../utils/cookies'
 
 const IndexPage = () => {
   return (
@@ -70,13 +71,13 @@ function UserInfoForm() {
   )
 }
 
-export async function getServerSideProps({ req }) {
-  const cookies = parseCookies(req)
-  if (cookies?.lifeInfo) {
-    const lifeInfo = JSON.parse(cookies.lifeInfo)
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const dob = savedDob(parseCookies(req))
+  if (dob) {
     return {
       redirect: {
-        destination: `/view?dob=${lifeInfo.dob}`,
+        destination: `/view?dob=${encodeURIComponent(dob)}`,
+        permanent: false,
       },
     }
   }
