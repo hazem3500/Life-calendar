@@ -116,8 +116,12 @@ function variantSolid(props: Dict) {
     }
   }
 
-  const { bg = `${c}.500`, color = 'white', hoverBg = `${c}.600`, activeBg = `${c}.700` } =
-    accessibleColorMap[c] || {}
+  const {
+    bg = `${c}.500`,
+    color = 'white',
+    hoverBg = `${c}.600`,
+    activeBg = `${c}.700`,
+  } = accessibleColorMap[c] || {}
 
   const background = mode(bg, `${c}.200`)(props)
 

@@ -11,16 +11,8 @@ export default function Footer() {
 
   return (
     <Stack as="footer" align="center" pb={4}>
-      <Link as={NextLink} href="/">
-        <a
-          role="link"
-          tabIndex={0}
-          onClick={() => resetLifeInfo()}
-          onKeyPress={() => resetLifeInfo()}
-          style={{ textDecoration: 'underline' }}
-        >
-          Change your data
-        </a>
+      <Link as={NextLink} href="/" onClick={() => resetLifeInfo()} textDecoration="underline">
+        Change your data
       </Link>
       <Text>
         Made by{' '}

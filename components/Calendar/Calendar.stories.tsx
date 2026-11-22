@@ -8,8 +8,8 @@ export default {
     livedWeeks: 200,
   },
   parameters: {
-    layout: 'centered'
-  }
+    layout: 'centered',
+  },
 }
 
 export const calendar = (args) => <Calendar {...args} />

@@ -3,8 +3,9 @@ import PlausibleProvider from 'next-plausible'
 import theme from '../constants/theme/theme'
 import { CookiesProvider } from 'react-cookie'
 import Router from 'next/router'
+import type { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <PlausibleProvider
       domain="life-calendar.xyz"
@@ -20,14 +21,14 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-Router.events.on('routeChangeStart', (location) => {
+Router.events.on('routeChangeStart', (url: string) => {
+  const location = new URL(url, window.location.origin)
   if (process.env.NODE_ENV === `production` && typeof window['plausible'] === `object`) {
     const pathIsExcluded =
-      location &&
       typeof window['plausibleExcludePaths'] !== `undefined` &&
-      window['plausibleExcludePaths'].some((rx) => rx.test(location.pathname))
+      window['plausibleExcludePaths'].some((rx: RegExp) => rx.test(location.pathname))
 
-    if (pathIsExcluded) return null
+    if (pathIsExcluded) return
 
     window['plausible']('pageview')
   }
